@@ -1,0 +1,96 @@
+Styling Navigation
+
+  <nav class="site-nav">
+    <ul class="group">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  /* Site Navigation */
+    .site-nav li {
+      list-style: none;
+      float: left;
+      margin-right: 5px;
+    }
+
+    .site-nav {
+      margin-top: 20px;
+    }
+
+    .site-nav ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-nav a {
+      display: block;
+      color: #617140;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 3px solid #e5e9dc;
+      border-bottom: none;
+    }
+
+    .site-nav a:hover {
+      background-color: #e5e9dc;
+    }
+  /* End */
+
+    /* Clearfix method */
+    .group:before,
+    .group:after {
+      content: "";
+      display: table;
+    }
+
+    .group:after {
+      clear: both;
+    }
+
+    .group {
+      zoom: 1;
+    }
+
+Overlapping Content & Transparent Backgrounds
+  Position Absolute lets you remove an element from the flow of the page
+    and make them look for ancestor element using position relative
+  Position absolute looks for nearest parent with position relative
+  Anything with position relative its frame of reference is itself
+  Stuff on the page is not aware of its offsets
+  z-index
+    The battle of the overlaps
+    which element is visible;
+    elements with position relative the later element in html is on top
+
+
+  <div class="image-banner>
+    <img src="images/squirrel.jpg">
+    <div class="banner-description">
+      <p>Stuff</p>
+    </div>
+  </div>
+
+  img {
+    max-width: 100%;
+    heaight: auto;
+  }
+
+  .image-banner img {
+    display: block;
+  }
+
+  .image-banner {
+    position: relative;
+  }
+
+  .banner-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, .65);
+    padding: 15px 25px;
+  }

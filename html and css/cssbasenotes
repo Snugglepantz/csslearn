@@ -1,0 +1,83 @@
+CSS
+  Include in head
+    <link rel="stylesheet" href="css/screen.css">
+
+  Intro
+    h1 {
+      color: orange;
+      text-align: center;
+    }
+
+    CSS Rule
+      Entire code
+    h1
+     selector
+    declaration
+
+    p {
+      color: green;
+    }
+
+  CSS Selectors
+    3 Types
+      Type
+      Descendant
+      Class
+    Type Selectors
+      Name of element
+      Targets every element of type
+    Descendant Selectors
+      header p {
+        color: green;
+      }
+      header p span {
+        color: blue;
+      }
+    Class Selectors
+      .highlight {
+        background-color: yellow;
+      }
+
+      footer .highlight {
+        background-color: LightGray;
+      }
+
+  The Cascade  Most Technical Section in course
+    Browser default
+    Then we override many times
+    Not everything can be inherited
+    Specificity
+      How browser decides which style to apply
+      Not always clear what browser determines what is more specific
+      Simple Rules
+        Descendant selectors more specific than type selectors
+        Deeply nested descendant selectors are more specific than descendant selectors
+        Class selectors are more specific than type or descendant selectors
+        Descendant selector which references a class is more specific than a class selector
+        When 2 rules have identical specificity, whichever comes last will override
+      Start with more generic in css then work your way down
+
+  The Box Model
+    A web page is a collection of boxes
+    <div class="box-a">
+      Box A
+    </div>
+    <div class="box-b">
+      Box B
+    </div>
+
+    .box-a {
+      background-color: LightGray;
+      padding: 30px; // How we create spacing inside the box
+      border: 3px solid black; //Specifies border
+      margin: 20px; //How we create space between items
+      width: 200px;  //Padding and border adds to width and height
+      height: 150px;
+      box-sizing: border-box;  //Fixes problem where padding and border adds to size
+    }
+
+    .box-b {
+      background-color: orange;
+      width: 200px;
+      height: 150px;
+    }

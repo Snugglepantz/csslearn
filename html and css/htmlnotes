@@ -1,0 +1,154 @@
+Description List
+  <dl>
+    <dt>Title:</dt>
+    <dd>Description</dd>
+    <dt>Title2:</dt>
+    <dd>Description</dd>
+    <dd>Description2</dd>
+  </dl>
+Text
+  Bold
+    <strong>
+      Use this
+      Strong importance
+      can more easily target with css
+    <b>
+  Italic
+    <em>
+      Adds emphasis
+      Use this
+    <i>
+      Don't use
+    <dfn>
+      Definition
+  Right Single Quote
+    &rsquo;
+  Left Single Quote
+    &lsquo;
+  Right Double Quote
+    &rqduo;
+  Right Double Quote
+    &lqduo;
+  Ampersands
+    &amp;
+  Greater Than
+    &gt;
+  Less Than
+    &lt;
+  Copyright
+    &copy;
+  Registered Symbol
+    &reg;
+  Trademark Symbol
+    &trade;
+
+Structural Elements
+  <header>
+    Header
+    Can use in sections or articles
+  <footer>
+    Footer
+    Can use in sections or articles
+  <article>
+    Something that can stand on its own
+  <aside>
+    Section related to content but should be separate
+  <nav>
+    Industry Standard
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+  <div>
+    Block Level
+    Division / Section
+      Division of content in your page
+      Makes css easier
+  <span>
+    Inline
+    Non semantic em or strong
+  <section>
+    Parts of a whole
+
+Forms
+  name attribute on inputs is used to make input accessible for programming
+
+  Input Types
+    Different input types allows browsers to validate
+    text
+    email
+    tel
+    number
+  <textarea>
+  Select
+    Choosing from set of options
+    <select name="color">
+      <option value="colorRed">Red</option>
+      <option value="colorOrange">Orange</option>
+      <option value="colorYellow">Yellow</option>
+    </select>
+  Radio
+    Should wrap in fieldset
+    <fieldset>
+      <legend>What is your favorite meal?</legend>
+
+      <input id="breakfast" type="radio" name="favoriteMeal" value="meal1">
+      <label for="breakfast">Breakfast</label>
+      <input id="breakfast" type="radio" name="favoriteMeal" value="meal2">
+      <label for="brunch">Breakfast</label>
+      <input id="breakfast" type="radio" name="favoriteMeal" value="meal3">
+      <label for="lunch">Breakfast</label>
+
+    </fieldset>
+
+  Checkbox
+    Should wrap in fieldset
+    <fieldset>
+      <legend>Which meals do you enjoy?(Check all that apply)</legend>
+
+      <input id="breakfast" type="checkbox" name="favoriteMeal" value="meal1">
+      <label for="breakfast">Breakfast</label>
+      <input id="breakfast" type="checkbox" name="favoriteMeal" value="meal2">
+      <label for="brunch">Breakfast</label>
+      <input id="breakfast" type="checkbox" name="favoriteMeal" value="meal3">
+      <label for="lunch">Breakfast</label>
+
+    </fieldset>
+
+Tables
+  Tables are not for layout
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Aisle</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bread<td>
+        <td>2<td>
+        <td>$3.00<td>
+        <td>1<td>
+      </tr>
+      <tr>
+        <td>Milk<td>
+        <td>1<td>
+        <td>$2.50<td>
+        <td>2<td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>All</td>
+        <td>N/A</td>
+        <td>$5.50</td>
+        <td>N/A</td>
+      </tr>
+    </tfoot>
+  </table>
