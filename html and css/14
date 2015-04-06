@@ -1,0 +1,66 @@
+Responsive Web Design
+  meta tag in head
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  media queries(conditional css)
+    @media screen and (max-width: 700px) {
+      .main-area,
+      .sidebar {
+        width: auto;
+        float: none;
+      }
+
+      .main-area {
+        padding-right: 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        paddding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .content-area {
+        padding-top: 20px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hide-small {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      .site-nav li {
+        width: 33.332%;
+        margin-right: 0px;
+      }
+
+      .site-nav a {
+        padding: 15px, 0;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .site-nav li {
+        width: 50%;
+      }
+    }
+
+    @media screen and (min-width: 1300px) {
+      body {
+        font-size: 17px;
+      }
+
+      .container {
+        max-width: 1200px;
+      }
+    }
+
+Responsive Grids

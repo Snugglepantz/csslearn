@@ -9,4 +9,4 @@ gulp.task('sassDev', ['clean'], function() {
       .pipe(sass())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(config.stage + config.css.dest));
-})
+});

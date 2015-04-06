@@ -1,0 +1,23 @@
+CSS Typography
+  font-family
+    make sure last font is default
+  font-weight
+  font-style
+  letter-spacing
+  word-spacing
+  text-shadow
+  text-transform
+  text-decoration
+  text-align
+  text-indent
+  line-height
+
+Custom Fonts
+  Font Squirrel for generating all font formats
+
+  @font-face {
+    font-family: 'PTSans';
+    src: url('fonts/PT-Sans.woff') format('woff');
+    font-weight: normal;
+    font-style:  normal;
+  }
