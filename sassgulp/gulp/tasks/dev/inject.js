@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var inject = require("gulp-inject");
 var config = require('../../config');
 
-gulp.task("injectDev", ['cssDev'], function () {
+gulp.task("injectDev", ['cssDev', 'copyVendorDev'], function () {
 
   return gulp.src(config.html.index)
       .pipe(inject(
