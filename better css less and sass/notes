@@ -1,0 +1,16 @@
+Syntactically Awesome StyleSheets
+  Sass and Scss
+
+Variables
+    $variableName: value;
+    $d: Helvetica, sans-serif;
+    $e: 1px #000 solid 0 0;
+  Operations
+    font-size: 4px + 4;
+  Color Functions
+    lighten($color, 10%);
+    darken($color, 10%);
+  String Interpolation
+    "#{$root}background.jpg"
+Using Variables
+  $mainColor: Black;
