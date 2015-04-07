@@ -1,0 +1,56 @@
+Mixins
+  Like a function
+  @mixin verticalGradient($fromColor, $toColor) {
+    background-image: linear-gradient(to bottom, $fromColor, $toColor);
+  }
+
+  @include verticalGradient(blue, red);
+
+
+  /* Media Query Mixins */
+  @mixin bp-babyBear {
+    @media only screen and (max-width: 480px) {
+      @content
+    }
+  }
+  @mixin bp-papaBear {
+    @media only screen and (min-width: 1100px) {
+      @content
+    }
+  }
+
+  .site-header nav {
+    ul {
+      padding: 0;
+      margin: 0;
+      @extend .group;
+    }
+
+    li {
+      list-style: none;
+      float: left;
+      margin-right: 10px;
+      @include bp-babyBear {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 2px;
+      }
+
+      @include bp-papaBear {
+        margin-right: 50px;
+      }
+    }
+
+    a {
+      display:
+      padding:
+      background-
+      color:
+      text-decoration:
+    }
+  }
+
+  Community Mixins
+    Compass
+    Bourbon
+    Susy

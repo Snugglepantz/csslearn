@@ -1,0 +1,84 @@
+box-shadow
+  box-shadow 10px 2px 5px #000;
+    Parameters
+      horizontal postition
+      vertical position
+      blur
+      color
+    Positioning
+      inset inside
+Rounded Corners
+  border-radius: 10px;
+CSS Transform
+  transform: rotate(25deg);
+  transform: scale(1.3);
+  transform: skewX(15deg);
+  transform: skewY(15deg);
+  transform-origin: 0 0;
+  transform: translateY(20px) tranlateX(100px);
+  transform: translateY(100px, 20px);
+
+  Layout purposes use position: relative;
+  animation purposes use translate;
+
+CSS Transition
+  transition-property: color;
+  transition-duration: 2s;
+
+
+  overflow: hidden;
+
+  opacity: 0;
+  transition-property: all;
+  transition-duration: 1s;
+  transform: translateY(100%);
+
+  .image-banner img {
+    transition: all 1s;
+  }
+
+  .image-banner:hover img {
+    transform: scale(1.5);
+  }
+
+  .image-banner:hover .banner-description {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+CSS Animations
+  @keyframes fadeBounce {
+
+
+    0% {
+      opacity: 0;
+      transform: translateY(-200%);
+    }
+
+    40% {
+      transform: translateY(0);
+    }
+
+    55% {
+      transform: translateY(-6px);
+    }
+
+    70% {
+    opacity: 0;
+      transform: translateY(0px)
+    }
+
+    85% {
+      transform: translateY(-3px)
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+
+  }
+
+  .box-a {
+    animation-name: fadeBounce;
+    animation-duration: 1s;
+  }
