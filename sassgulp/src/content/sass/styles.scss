@@ -1,4 +1,17 @@
-/*@import "compass";*/
-@import "../../../bower/lib/susy/sass/susy";
-@import "partials/variables";
-@import "partials/normalize";
+@import "susy";
+
+$susy: (
+        columns: 12,
+        gutters: .25,
+        global-box-sizing: border-box,
+        debug: (
+                image: true,
+                output : background
+        )
+);
+@include border-box-sizing;
+
+.wrap {
+  @include container();
+  height: 100vh; // This forces .wrap to 100% of your viewport height, allowing you to see the background grid
+}
