@@ -8,8 +8,10 @@ gulp.task('sassDev', ['clean'], function () {
       .pipe(sourcemaps.init())
       .pipe(sass({
         includePaths: [
-          'bower/lib/susy/sass'
-        ]
+          'bower/lib/susy/sass',
+          'bower/lib/sassy-maps/sass'
+        ],
+        errLogToConsole: true
       }))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(config.stage + config.css.dest));
