@@ -12,9 +12,9 @@ module.exports = {
     src: ['src/**/*module.js', 'src/**/*.js'],
     inject: "app/**/*.js",
     dest: "",
-    vendorSrc: [vendorSrc + "**/jquery/*.js", vendorSrc + '**/*.js'],
+    vendorSrc: [vendorSrc + "**/jquery/*.js", vendorSrc + '**/angular/*.js', vendorSrc + '**/*.js'],
     vendorDest: vendorDest + 'js/',
-    vendorInject: vendorDest + "js/*.js"
+    vendorInject: ["build/lib/js/jquery.js", "build/lib/js/angular.js", "build/lib/js/*.js"]
   },
   css: {
     src: ['src/content/css/**/*.css'],
