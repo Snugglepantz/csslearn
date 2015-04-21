@@ -1,0 +1,14 @@
+gulp.task
+  (name [,dep], fn)
+  dependencies run in parallel before the task runs
+
+gulp.src(glob, [, options])
+  src files
+  Options
+    base
+      how much of path to retain
+
+gulp.dest( folder [, options])
+  dest files
+
+gulp.watch(glob [, options], tasks|cb)
