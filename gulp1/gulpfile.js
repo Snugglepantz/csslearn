@@ -1,7 +1,6 @@
 var gulp = require('gulp');
-jshint = require('gulp-jshint');
-jscs = require('gulp-jscs');
-util = require('gulp-util');
+var jshint = require('gulp-jshint');
+var util = require('gulp-util');
 
 gulp.task('vet', function () {
   log('Analyzing source with JSHint and JSCS');
@@ -9,9 +8,8 @@ gulp.task('vet', function () {
     './src/**/*.js',
     './*.js'
   ])
-    .pipe(jscs())
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-sylish', {verbose: true}))
+    .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
     .pipe(jshint.reporter('fail'));
 });
 
