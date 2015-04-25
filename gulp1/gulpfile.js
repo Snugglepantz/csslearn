@@ -24,7 +24,7 @@ gulp.task('clean-styles', function(done){
 function clean(path, done) {
   log('Cleaning: ' + $.util.colors.blue(path));
   del(path, done);
-}
+};
 
 
 /**
