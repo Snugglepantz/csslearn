@@ -1,0 +1,12 @@
+Commands
+  sails new --no-frontend
+    generates project
+  sails lift
+    runs
+  sails generate api user
+    generates api
+Posting and Authentication
+  look at previous tutorial on token auth
+  OAuth with twitter
+
+

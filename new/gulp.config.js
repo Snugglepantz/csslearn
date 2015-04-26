@@ -3,7 +3,7 @@ module.exports = function () {
   var vendorSrc = 'bower/lib/';
   var vendorCSSDest = build + 'vendorCSS/';
   var vendorJSDest = build + 'vendorJS/';
-  var config = {
+  return {
     build: build,
     tmp: './.tmp/',
     index: 'src/index.html',
@@ -21,7 +21,7 @@ module.exports = function () {
       vendorSrc: [
         vendorSrc + '**/jquery/**/*.js',
         vendorSrc + '**/angular/**/*.js',
-        vendorSrc + '**/*.js',
+        vendorSrc + '**/*.js'
       ],
       vendorDest: vendorJSDest,
       vendorFile: 'vendor.min.js',
@@ -34,6 +34,11 @@ module.exports = function () {
         '.tmp/**/*.css'
       ],
       dest: build + 'css/',
+      sassSrc: ['src/content/sass/**/*.scss', '!src/content/sass/**/_variables.scss'],
+      sassVendor: 'bower_components/materialize/sass/**/*.scss',
+      sassTemp: 'sassTemp',
+      sassVarSrc: 'src/content/sass/components/_variables.scss',
+      sassVarDest: 'sassTemp/components',
       vendorSrc: [
         vendorSrc + '**/*.css'
       ],
@@ -43,10 +48,10 @@ module.exports = function () {
     },
     fonts: {
       src: [
-        'bower_components/font-awesome/fonts/*.*',
+        'bower_components/materialize/font/**',
         'src/content/fonts/**/*.*'
       ],
-      dest: build + 'fonts'
+      dest: build + 'font/'
     },
     images: {
       src: 'src/content/images/**.*',
@@ -67,6 +72,4 @@ module.exports = function () {
     }
 
   };
-
-  return config;
 };

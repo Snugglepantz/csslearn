@@ -10,7 +10,7 @@ var $ = require('gulp-load-plugins')({lazy: true});
  * Main
  *****************************************************************/
 //Dev
-gulp.task('default', ['inject', 'html', 'css', 'js', 'fonts', 'images', 'flash']);
+gulp.task('default', ['inject', 'html', 'css', 'js', 'fonts', 'images']);
 //Dist
 
 /*****************************************************************
@@ -19,15 +19,20 @@ gulp.task('default', ['inject', 'html', 'css', 'js', 'fonts', 'images', 'flash']
  *
  *****************************************************************/
 //Dev
-gulp.task('clean', ['cleanDist', 'cleanTmp']);
+gulp.task('clean', ['cleanDist', 'cleanTmp', 'cleanSass']);
 
-gulp.task('cleanDist', function(done) {
+gulp.task('cleanDist', function (done) {
   var files = config.build;
   clean(files, done);
 });
 
-gulp.task('cleanTmp', function(done) {
+gulp.task('cleanTmp', function (done) {
   var files = config.tmp;
+  clean(files, done);
+});
+
+gulp.task('cleanSass', function (done) {
+  var files = config.css.sassTemp;
   clean(files, done);
 });
 
@@ -39,7 +44,7 @@ gulp.task('cleanTmp', function(done) {
  *****************************************************************/
 gulp.task('css', ['less']);
 //Less
-gulp.task('less', ['clean'], function() {
+gulp.task('less', ['clean'], function () {
   log('Compiling Less --> CSS');
   return gulp
     .src(config.css.less)
@@ -47,6 +52,17 @@ gulp.task('less', ['clean'], function() {
     .pipe(gulp.dest(config.tmp));
 });
 
+gulp.task('sass', ['copyVar']);
+
+gulp.task('copySass', ['clean'], function() {
+  return gulp.src(config.css.sassVendor)
+    .pipe(gulp.dest(config.css.sassTemp));
+});
+
+gulp.task('copyVar', ['copySass'], function() {
+  return gulp.src(config.css.sassVarSrc)
+    .pipe(gulp.dest(config.css.sassVarDest));
+});
 //Dist
 
 /*****************************************************************
@@ -56,7 +72,7 @@ gulp.task('less', ['clean'], function() {
  *****************************************************************/
 gulp.task('js', ['lint']);
 //Lint
-gulp.task('lint', function() {
+gulp.task('lint', function () {
   log('Running JSHint');
   return gulp.src(config.js.src)
     .pipe($.jshint())
@@ -71,7 +87,7 @@ gulp.task('lint', function() {
  * HTML
  *
  *****************************************************************/
-gulp.task('html', ['clean'], function() {
+gulp.task('html', ['clean'], function () {
   if (!args.prod) {
     return gulp
       .src(config.html, {base: 'src/'})
@@ -85,9 +101,7 @@ gulp.task('html', ['clean'], function() {
       }))
       .pipe(gulp.dest(config.tmp));
   }
-  return;
 });
-
 
 
 /*****************************************************************
@@ -96,11 +110,11 @@ gulp.task('html', ['clean'], function() {
  *
  *****************************************************************/
 //Dev
-gulp.task('fonts', ['clean'], function() {
+gulp.task('fonts', ['clean'], function () {
   log('Copying Fonts');
   return gulp
     .src(config.fonts.src)
-    .pipe($.flatten())
+    //.pipe($.flatten())
     .pipe(gulp.dest(config.fonts.dest));
 });
 
@@ -110,7 +124,7 @@ gulp.task('fonts', ['clean'], function() {
  *
  *****************************************************************/
 //Dev
-gulp.task('images', ['clean'], function() {
+gulp.task('images', ['clean'], function () {
   log('Copying Images');
   return gulp
     .src(config.images.src)
@@ -119,58 +133,57 @@ gulp.task('images', ['clean'], function() {
 
 /*****************************************************************
  *
- * Flash(REALLY! YEAH THIS IS HERE)
- *
- *****************************************************************/
-//Dev
-gulp.task('flash', ['clean'], function() {
-  log('Copying Flash');
-  return gulp
-    .src(config.flash.src)
-    .pipe($.flatten())
-    .pipe(gulp.dest(config.flash.dest));
-});
-
-/*****************************************************************
- *
  * Injection
  *
  *****************************************************************/
 //Dev
-gulp.task('inject', ['js', 'css'], function() {
+gulp.task('inject', ['js', 'css', 'sass'], function () {
   log('Injecting Dependencies into index.html');
   return gulp
     .src(config.index)
     //VendorJS
     .pipe($.inject(
       gulp.src(config.js.vendorSrc)
-      .pipe($.flatten())
-      .pipe($.if(args.prod, $.concat(config.js.vendorFile)))
-      .pipe($.if(args.prod, $.uglify()))
-      .pipe(gulp.dest(config.js.vendorDest)),
+        .pipe($.flatten())
+        .pipe($.if(args.prod, $.concat(config.js.vendorFile)))
+        .pipe($.if(args.prod, $.uglify()))
+        .pipe(gulp.dest(config.js.vendorDest)),
       config.injectBower))
     //VendorCSS
+    //.pipe($.inject(
+    //  gulp.src(config.css.vendorSrc)
+    //    .pipe($.flatten())
+    //    .pipe($.if(args.prod, $.concat(config.css.vendorFile)))
+    //    .pipe($.if(args.prod, $.minifyCss()))
+    //    .pipe(gulp.dest(config.css.vendorDest)),
+    //  config.injectBower))
     .pipe($.inject(
-      gulp.src(config.css.vendorSrc)
-      .pipe($.flatten())
-      .pipe($.if(args.prod, $.concat(config.css.vendorFile)))
-      .pipe($.if(args.prod, $.minifyCss()))
-      .pipe(gulp.dest(config.css.vendorDest)),
-      config.injectBower))
+      gulp.src(config.css.sassSrc)
+        .pipe($.sourcemaps.init())
+        .pipe($.sass({
+          includePaths: [config.css.sassTemp],
+          errLogToConsole: true
+        }))
+        .pipe($.sourcemaps.write())
+        .pipe(gulp.dest(config.css.vendorDest)),
+        config.injectBower))
+
     //AppJS
     .pipe($.inject(
       gulp.src(config.js.src, {base: 'src/'})
-      .pipe($.if(args.prod, $.concat(config.js.appFile)))
-      .pipe($.if(args.prod, $.uglify()))
-      .pipe(gulp.dest(config.js.dest)),
+        .pipe($.sourcemaps.init())
+        .pipe($.concat(config.js.appFile))
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write())
+        .pipe(gulp.dest(config.js.dest)),
       config.injectOther))
     //AppCSS
     .pipe($.inject(
       gulp.src(config.css.css)
-      .pipe($.flatten())
-      .pipe($.if(args.prod, $.concat(config.css.appFile)))
-      .pipe($.if(args.prod, $.minifyCss()))
-      .pipe(gulp.dest(config.css.dest)),
+        .pipe($.flatten())
+        .pipe($.if(args.prod, $.concat(config.css.appFile)))
+        .pipe($.if(args.prod, $.minifyCss()))
+        .pipe(gulp.dest(config.css.dest)),
       config.injectOther))
     .pipe(gulp.dest(config.build))
 });
